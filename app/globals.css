@@ -58,3 +58,28 @@
   }
 }
 
+@layer utilities {
+  .bg-grid {
+    background-size: 50px 50px;
+    background-image: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.05) 1px,
+        transparent 1px
+      ),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  }
+
+  .animate-grid-fade {
+    animation: grid-fade 2s infinite;
+  }
+
+  @keyframes grid-fade {
+    0%,
+    100% {
+      opacity: 0.4;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+}

@@ -1,167 +1,212 @@
-import Link from "next/link"
-import { MapPin } from "lucide-react"
+"use client";
+
+import Link from "next/link";
+import {
+  MapPin,
+  Facebook,
+  Twitter,
+  Instagram,
+  Linkedin,
+  Github,
+  ExternalLink,
+  Sparkles,
+  Shield,
+  Zap,
+} from "lucide-react";
+import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
+
+const socialLinks = [
+  { icon: Facebook, href: "#", label: "Facebook" },
+  { icon: Twitter, href: "#", label: "Twitter" },
+  { icon: Instagram, href: "#", label: "Instagram" },
+  { icon: Linkedin, href: "#", label: "LinkedIn" },
+  { icon: Github, href: "#", label: "Github" },
+];
+
+const FooterLink = ({
+  href,
+  children,
+}: {
+  href: string;
+  children: React.ReactNode;
+}) => (
+  <Link href={href}>
+    <motion.span
+      className="text-sm text-white/60 hover:text-primary relative group flex items-center gap-2"
+      whileHover={{ x: 5 }}
+    >
+      {children}
+      <motion.span
+        className="absolute -bottom-px left-0 w-0 h-px bg-gradient-to-r from-primary/0 via-primary to-primary/0 group-hover:w-full"
+        transition={{ duration: 0.3 }}
+      />
+    </motion.span>
+  </Link>
+);
 
 export default function Footer() {
   return (
-    <footer className="w-full border-t bg-background">
-      <div className="container px-4 md:px-6 py-8 md:py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div className="space-y-4">
-            <Link href="/" className="flex items-center gap-2">
-              <MapPin className="h-6 w-6 text-primary" />
-              <span className="font-bold text-xl">Reclaim</span>
+    <footer className="relative w-full overflow-hidden bg-black border-t border-white/10">
+      {/* Animated Background */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-grid-white/5 bg-grid animate-grid-fade" />
+
+        {/* Floating tech icons */}
+        {[Sparkles, Shield, Zap].map((Icon, index) => (
+          <motion.div
+            key={index}
+            className="absolute text-primary/5"
+            animate={{
+              y: [0, -20, 0],
+              opacity: [0.5, 1, 0.5],
+              scale: [1, 1.2, 1],
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              delay: index * 2,
+            }}
+            style={{
+              left: `${20 + index * 30}%`,
+              top: "20%",
+            }}
+          >
+            <Icon size={40} />
+          </motion.div>
+        ))}
+      </div>
+
+      <div className="container relative px-4 md:px-6 py-12 md:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
+          {/* Brand Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="space-y-4"
+          >
+            <Link href="/" className="flex items-center gap-2 group">
+              <motion.div
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.5 }}
+              >
+                <MapPin className="h-6 w-6 text-primary" />
+              </motion.div>
+              <span className="font-bold text-xl bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-400">
+                Reclaim
+              </span>
             </Link>
-            <p className="text-sm text-muted-foreground">
-              A blockchain-based lost and found platform that helps you recover your lost items through AI and community
-              collaboration.
+            <p className="text-sm text-white/60 leading-relaxed">
+              A blockchain-based lost and found platform that helps you recover
+              your lost items through AI and community collaboration.
             </p>
-          </div>
-          <div>
-            <h3 className="font-medium text-sm mb-4">Platform</h3>
+          </motion.div>
+
+          {/* Quick Links */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            <h3 className="font-medium text-sm mb-4 text-white/80">Platform</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/dashboard" className="text-sm text-muted-foreground hover:text-primary">
-                  Dashboard
-                </Link>
+                <FooterLink href="/dashboard">Dashboard</FooterLink>
               </li>
               <li>
-                <Link href="/report-lost" className="text-sm text-muted-foreground hover:text-primary">
-                  Report Lost Item
-                </Link>
+                <FooterLink href="/report-lost">Report Lost Item</FooterLink>
               </li>
               <li>
-                <Link href="/report-found" className="text-sm text-muted-foreground hover:text-primary">
-                  Report Found Item
-                </Link>
+                <FooterLink href="/report-found">Report Found Item</FooterLink>
               </li>
               <li>
-                <Link href="/search" className="text-sm text-muted-foreground hover:text-primary">
-                  Search Items
-                </Link>
+                <FooterLink href="/search">Search Items</FooterLink>
               </li>
             </ul>
-          </div>
-          <div>
-            <h3 className="font-medium text-sm mb-4">Resources</h3>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <h3 className="font-medium text-sm mb-4 text-white/80">
+              Resources
+            </h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/how-it-works" className="text-sm text-muted-foreground hover:text-primary">
-                  How It Works
-                </Link>
+                <FooterLink href="/how-it-works">How It Works</FooterLink>
               </li>
               <li>
-                <Link href="/faq" className="text-sm text-muted-foreground hover:text-primary">
-                  FAQ
-                </Link>
+                <FooterLink href="/faq">FAQ</FooterLink>
               </li>
               <li>
-                <Link href="/blog" className="text-sm text-muted-foreground hover:text-primary">
-                  Blog
-                </Link>
+                <FooterLink href="/blog">Blog</FooterLink>
               </li>
               <li>
-                <Link href="/support" className="text-sm text-muted-foreground hover:text-primary">
-                  Support
-                </Link>
+                <FooterLink href="/support">Support</FooterLink>
               </li>
             </ul>
-          </div>
-          <div>
-            <h3 className="font-medium text-sm mb-4">Legal</h3>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            <h3 className="font-medium text-sm mb-4 text-white/80">Legal</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/terms" className="text-sm text-muted-foreground hover:text-primary">
-                  Terms of Service
-                </Link>
+                <FooterLink href="/terms">Terms of Service</FooterLink>
               </li>
               <li>
-                <Link href="/privacy" className="text-sm text-muted-foreground hover:text-primary">
-                  Privacy Policy
-                </Link>
+                <FooterLink href="/privacy">Privacy Policy</FooterLink>
               </li>
               <li>
-                <Link href="/cookies" className="text-sm text-muted-foreground hover:text-primary">
-                  Cookie Policy
-                </Link>
+                <FooterLink href="/cookies">Cookie Policy</FooterLink>
               </li>
             </ul>
-          </div>
+          </motion.div>
         </div>
-        <div className="mt-8 pt-8 border-t flex flex-col md:flex-row justify-between items-center">
-          <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} Reclaim. All rights reserved.</p>
+
+        {/* Bottom Section */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center"
+        >
+          <p className="text-xs text-white/40">
+            © {new Date().getFullYear()} Reclaim. All rights reserved.
+          </p>
+
+          {/* Social Links */}
           <div className="flex items-center gap-4 mt-4 md:mt-0">
-            <Link href="#" className="text-muted-foreground hover:text-primary">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-5 w-5"
+            {socialLinks.map((social, index) => (
+              <motion.div
+                key={social.label}
+                whileHover={{ y: -3, scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-              </svg>
-            </Link>
-            <Link href="#" className="text-muted-foreground hover:text-primary">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-5 w-5"
-              >
-                <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
-              </svg>
-            </Link>
-            <Link href="#" className="text-muted-foreground hover:text-primary">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-5 w-5"
-              >
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-              </svg>
-            </Link>
-            <Link href="#" className="text-muted-foreground hover:text-primary">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-5 w-5"
-              >
-                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                <rect x="2" y="9" width="4" height="12"></rect>
-                <circle cx="4" cy="4" r="2"></circle>
-              </svg>
-            </Link>
+                <Link
+                  href={social.href}
+                  className="text-white/40 hover:text-primary transition-colors relative group"
+                >
+                  <social.icon className="h-5 w-5" />
+                  <motion.div
+                    className="absolute -inset-2 bg-primary/10 rounded-full opacity-0 group-hover:opacity-100 -z-10"
+                    initial={false}
+                    animate={{ scale: [0.95, 1.1, 0.95] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  />
+                </Link>
+              </motion.div>
+            ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </footer>
-  )
+  );
 }
-
