@@ -6,6 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import Image from "next/image";
+import { Montserrat } from "next/font/google";
 import {
   MapPin,
   Clock,
@@ -17,6 +18,12 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+
+// Initialize Montserrat font
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  display: "swap",
+});
 
 // Mock data for lost items
 const lostItems = [
@@ -122,7 +129,9 @@ export default function DashboardPage() {
   const floatingIcons = [Hexagon, CircuitBoard, Box];
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-b from-background via-background/95 to-background relative overflow-hidden">
+    <div
+      className={`min-h-screen w-full bg-gradient-to-b from-background via-background/95 to-background relative overflow-hidden ${montserrat.className}`}
+    >
       {/* Animated background elements */}
       <div className="absolute inset-0 bg-grid-white/5 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]" />

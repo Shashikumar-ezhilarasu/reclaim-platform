@@ -5,8 +5,26 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 // import Header from "@/components/header"
 import Footer from "@/components/footer";
+import localFont from "next/font/local";
 
 const inter = Inter({ subsets: ["latin"] });
+
+const montserrat = localFont({
+  src: [
+    {
+      path: "../public/fonts/Montserrat/Montserrat-VariableFont_wght.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Montserrat/Montserrat-Italic-VariableFont_wght.ttf",
+      weight: "400",
+      style: "italic",
+    },
+  ],
+  variable: "--font-main",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Reclaim | Blockchain-Based Lost & Found",
