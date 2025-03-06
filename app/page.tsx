@@ -47,7 +47,7 @@ export default function Home() {
         <HeroSection />
 
         {/* Stats Section */}
-        <StatsSection />
+        {/* <StatsSection /> */}
 
         {/* How It Works */}
         <HowItWorks />
@@ -56,7 +56,7 @@ export default function Home() {
         <Features />
 
         {/* Testimonials */}
-        <Testimonials />
+        {/* <Testimonials /> */}
 
         {/* CTA Section */}
         <CTASection />

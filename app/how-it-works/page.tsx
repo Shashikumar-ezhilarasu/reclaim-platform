@@ -53,12 +53,12 @@ export default function HowItWorksPage() {
       title: "Secure Transactions",
       description:
         "Blockchain-based wallet integration ensures secure bounty payments. This transparent system builds trust between item owners and finders.",
-      image: IMAGES.HOW_IT_WORKS.NOTIFICATIONS,
+      image: IMAGES.HOW_IT_WORKS.SECURE_TRANSACTIONS,
     },
   ];
 
   return (
-    <div className="container px-4 py-8 md:px-6 md:py-12">
+    <div className="container px-4 py-8 md:px-6 md:py-12 mt-16">
       <div className="max-w-3xl mx-auto">
         <div className="mb-12 text-center">
           <h1 className="text-4xl font-bold tracking-tight mb-4">

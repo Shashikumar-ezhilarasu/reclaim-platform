@@ -34,12 +34,12 @@ export const IMAGES = {
   HOW_IT_WORKS: {
     REPORT_LOST:
       "https://images.unsplash.com/photo-1586769852044-692d6e3703f0?q=80&w=1770&auto=format&fit=crop",
-    REPORT_FOUND:
-      "https://images.unsplash.com/photo-1590935217180-43dd1f0c8c14?q=80&w=1964&auto=format&fit=crop",
+    REPORT_FOUND: "/found.png",
     AI_MATCHING:
       "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=1770&auto=format&fit=crop",
     NOTIFICATIONS:
       "https://images.unsplash.com/photo-1577563908411-5077b6dc7624?q=80&w=1770&auto=format&fit=crop",
+    SECURE_TRANSACTIONS: "/secure-transactions.png",
   },
 
   // Testimonials
