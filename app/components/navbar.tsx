@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import Image from "next/image";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
@@ -77,16 +77,79 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* Desktop Register/Login Button */}
+        {/* Desktop Connect Button */}
         <div className="hidden md:block">
-          <Link href="/login">
-            <Button
-              variant={isScrolled ? "default" : "secondary"}
-              className="transition-colors rounded-full"
-            >
-              Connect Wallet
-            </Button>
-          </Link>
+          <ConnectButton.Custom>
+            {({
+              account,
+              chain,
+              openAccountModal,
+              openChainModal,
+              openConnectModal,
+              mounted,
+            }) => {
+              const ready = mounted;
+              const connected = ready && account && chain;
+
+              return (
+                <div
+                  {...(!ready && {
+                    "aria-hidden": true,
+                    style: {
+                      opacity: 0,
+                      pointerEvents: "none",
+                      userSelect: "none",
+                    },
+                  })}
+                >
+                  {(() => {
+                    if (!connected) {
+                      return (
+                        <Button
+                          onClick={openConnectModal}
+                          variant={isScrolled ? "default" : "secondary"}
+                          className="transition-colors rounded-full"
+                        >
+                          Connect Wallet
+                        </Button>
+                      );
+                    }
+
+                    return (
+                      <div className="flex items-center gap-2">
+                        <Button
+                          onClick={openChainModal}
+                          variant="outline"
+                          className="transition-colors rounded-full"
+                        >
+                          {chain.hasIcon && (
+                            <div className="mr-2">
+                              {chain.iconUrl && (
+                                <img
+                                  alt={chain.name ?? "Chain icon"}
+                                  src={chain.iconUrl}
+                                  className="h-4 w-4"
+                                />
+                              )}
+                            </div>
+                          )}
+                          {chain.name}
+                        </Button>
+
+                        <Button
+                          onClick={openAccountModal}
+                          variant={isScrolled ? "default" : "secondary"}
+                          className="transition-colors rounded-full"
+                        >
+                          {account.displayName}
+                        </Button>
+                      </div>
+                    );
+                  })()}
+                </div>
+              );
+            }}
+          </ConnectButton.Custom>
         </div>
 
         {/* Mobile Menu Button */}
@@ -138,13 +201,9 @@ const Navbar = () => {
             </Link>
           ))}
           <hr className="my-2 border-border" />
-          <Link
-            href="/login"
-            className="block px-4 py-2 hover:bg-muted transition-colors"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            Sign In
-          </Link>
+          <div className="px-4 py-2">
+            <ConnectButton />
+          </div>
         </div>
       </motion.nav>
     </div>
