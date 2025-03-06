@@ -12,7 +12,7 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Transform values for width and padding
-  const width = useTransform(scrollY, [0, 100], ["100vw", "60%"]);
+  const width = useTransform(scrollY, [0, 100], ["100vw", "70%"]);
   const padding = useTransform(scrollY, [0, 100], ["0px", "16px"]);
   const background = useTransform(
     scrollY,
@@ -120,7 +120,9 @@ const Navbar = () => {
                         <Button
                           onClick={openChainModal}
                           variant="outline"
-                          className="transition-colors rounded-full"
+                          className={`transition-colors rounded-full ${
+                            isScrolled ? "text-white" : "text-white"
+                          }`}
                         >
                           {chain.hasIcon && (
                             <div className="mr-2">

@@ -1,5 +1,6 @@
 "use client";
 
+import { IMAGES } from "@/lib/constants";
 import {
   Card,
   CardContent,
@@ -10,6 +11,7 @@ import {
 import { Search, Upload, Sparkles, Bell } from "lucide-react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 export default function HowItWorks() {
   const steps = [
@@ -18,24 +20,28 @@ export default function HowItWorks() {
       title: "Report Lost Items",
       description:
         "Provide details about your lost item including name, image, last known location, and optional bounty.",
+      image: IMAGES.HOW_IT_WORKS.REPORT_LOST,
     },
     {
       icon: <Upload className="h-10 w-10 text-primary" />,
       title: "Report Found Items",
       description:
         "Upload details and location of items you've found to help owners reclaim their belongings.",
+      image: IMAGES.HOW_IT_WORKS.REPORT_FOUND,
     },
     {
       icon: <Sparkles className="h-10 w-10 text-primary" />,
       title: "AI-Powered Matching",
       description:
         "Our AI matches lost items with found reports using image recognition and text analysis.",
+      image: IMAGES.HOW_IT_WORKS.AI_MATCHING,
     },
     {
       icon: <Bell className="h-10 w-10 text-primary" />,
       title: "Personalized Alerts",
       description:
         "Receive geo-fencing alerts and notifications when matches are found for your items.",
+      image: IMAGES.HOW_IT_WORKS.NOTIFICATIONS,
     },
   ];
 
@@ -72,9 +78,17 @@ export default function HowItWorks() {
 
   return (
     <section className="w-full py-12 md:py-24 relative overflow-hidden bg-gradient-to-b from-background to-background/80">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 bg-grid-white/5 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]" />
+      {/* Background image with overlay */}
+      <div className="absolute inset-0 opacity-10">
+        <Image
+          src={IMAGES.FEATURES.BLOCKCHAIN}
+          alt="Background"
+          fill
+          className="object-cover"
+          priority
+        />
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
 
       <motion.div
         className="container px-4 md:px-6 relative z-10"
@@ -107,7 +121,16 @@ export default function HowItWorks() {
         >
           {steps.map((step, index) => (
             <motion.div key={index} variants={cardVariants} whileHover="hover">
-              <Card className="relative bg-black/40 backdrop-blur-xl border-primary/20 hover:border-primary/40 transition-colors duration-500">
+              <Card className="relative bg-black/40 backdrop-blur-xl border-primary/20 hover:border-primary/40 transition-colors duration-500 overflow-hidden">
+                {/* Card background image */}
+                <div className="absolute inset-0 opacity-20">
+                  <Image
+                    src={step.image}
+                    alt={step.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent rounded-lg" />
                 <CardHeader className="pb-2 relative">
                   <motion.div

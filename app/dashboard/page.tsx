@@ -18,6 +18,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { IMAGES } from "@/lib/constants";
 
 // Initialize Montserrat font
 const montserrat = Montserrat({
@@ -25,7 +26,7 @@ const montserrat = Montserrat({
   display: "swap",
 });
 
-// Mock data for lost items
+// Update the mock data with real images
 const lostItems = [
   {
     id: "1",
@@ -35,7 +36,7 @@ const lostItems = [
     date: "2023-03-01",
     status: "active",
     bounty: 50,
-    image: "/placeholder.svg",
+    image: IMAGES.LOST_ITEMS.BACKPACK,
   },
   {
     id: "2",
@@ -45,7 +46,7 @@ const lostItems = [
     date: "2023-03-05",
     status: "matched",
     bounty: 100,
-    image: "/placeholder.svg",
+    image: IMAGES.LOST_ITEMS.PHONE,
   },
   {
     id: "3",
@@ -55,11 +56,11 @@ const lostItems = [
     date: "2023-03-10",
     status: "recovered",
     bounty: 25,
-    image: "/placeholder.svg",
+    image: IMAGES.LOST_ITEMS.KEYS,
   },
 ];
 
-// Mock data for found items
+// Update the mock data with real images
 const foundItems = [
   {
     id: "1",
@@ -68,7 +69,7 @@ const foundItems = [
     location: "Bus Stop on Main Street",
     date: "2023-03-02",
     status: "reported",
-    image: "/placeholder.svg",
+    image: IMAGES.LOST_ITEMS.WALLET,
   },
   {
     id: "2",
@@ -77,7 +78,7 @@ const foundItems = [
     location: "Coffee shop downtown",
     date: "2023-03-07",
     status: "matched",
-    image: "/placeholder.svg",
+    image: IMAGES.LOST_ITEMS.UMBRELLA,
   },
 ];
 
@@ -237,7 +238,7 @@ export default function DashboardPage() {
                           <div className="flex flex-col md:flex-row">
                             <div className="relative w-full md:w-[100px] h-[100px] overflow-hidden">
                               <Image
-                                src={item.image || "/placeholder.svg"}
+                                src={item.image}
                                 alt={item.name}
                                 fill
                                 className="object-cover transition-transform duration-300 group-hover:scale-110"
@@ -361,7 +362,7 @@ export default function DashboardPage() {
                           <div className="flex flex-col md:flex-row">
                             <div className="relative w-full md:w-[100px] h-[100px] overflow-hidden">
                               <Image
-                                src={item.image || "/placeholder.svg"}
+                                src={item.image}
                                 alt={item.name}
                                 fill
                                 className="object-cover transition-transform duration-300 group-hover:scale-110"

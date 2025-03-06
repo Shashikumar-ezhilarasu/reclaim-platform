@@ -6,6 +6,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { Quote, Star, Sparkles, CheckCircle } from "lucide-react";
 import { useRef, useState } from "react";
 import { cn } from "@/lib/utils";
+import { IMAGES } from "@/lib/constants";
 
 const testimonials = [
   {
@@ -13,7 +14,7 @@ const testimonials = [
       "I lost my laptop at the airport and thought it was gone forever. Thanks to Reclaim, someone found it and I got it back within 24 hours!",
     name: "Sarah Johnson",
     role: "Marketing Manager",
-    avatar: "/placeholder.svg?height=40&width=40",
+    avatar: IMAGES.AVATARS.USER1,
     rating: 5,
     color: "from-blue-500 to-cyan-400",
     verified: true,
@@ -23,7 +24,7 @@ const testimonials = [
       "The bounty system motivated me to return a lost wallet I found. It feels good to help others and get rewarded for honesty.",
     name: "Michael Chen",
     role: "College Student",
-    avatar: "/placeholder.svg?height=40&width=40",
+    avatar: IMAGES.AVATARS.USER2,
     rating: 5,
     color: "from-purple-500 to-pink-500",
     verified: true,
@@ -33,7 +34,7 @@ const testimonials = [
       "As a frequent traveler, I've lost items before. Reclaim's geo-fencing alerts helped me recover my expensive headphones at a coffee shop.",
     name: "Emily Rodriguez",
     role: "Travel Blogger",
-    avatar: "/placeholder.svg?height=40&width=40",
+    avatar: IMAGES.AVATARS.USER3,
     rating: 5,
     color: "from-amber-500 to-orange-400",
     verified: true,
